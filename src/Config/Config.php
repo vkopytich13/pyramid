@@ -1,12 +1,6 @@
 <?php
 
 return [
-    "DB" => [
-        "db_host" => "mysql",
-        "db_user" => "homestead",
-        "db_pass" => "secret",
-        "db_name" => "homestead",
-    ],
     "president" => [
         'entity_id'     => 1,
         'firstname'     => 'Mike',

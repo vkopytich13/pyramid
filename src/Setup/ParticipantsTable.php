@@ -17,7 +17,7 @@ class ParticipantsTable
             firstname VARCHAR(30) NOT NULL,
             lastname VARCHAR(30) NOT NULL,
             email VARCHAR(50) UNIQUE KEY,
-            position VARCHAR(10),
+            position VARCHAR(20),
             shares_amount INT(10) UNSIGNED,
             start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             parent_id INT(6) UNSIGNED NOT NULL

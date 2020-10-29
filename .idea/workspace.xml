@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cc0f3ff-4fa6-4c7f-9e2e-7b27269508d7" name="Default Changelist" comment="" />
+    <list default="true" id="5cc0f3ff-4fa6-4c7f-9e2e-7b27269508d7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Setup/ParticipantsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Setup/ParticipantsTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/index.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,16 +17,28 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/DB/MysqlDBConnection.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1jSR90P3LnYrbAdCfP0vOaXDFeQ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Docker.php/Dockerfile">
@@ -72,9 +91,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml.nginx: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.php: Compose Deployment" />
         <item itemvalue="Docker.php/Dockerfile" />
+        <item itemvalue="Docker.docker-compose.yml.php: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.nginx: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -88,17 +107,62 @@
       <option name="presentableId" value="Default" />
       <updated>1603795350294</updated>
       <workItem from="1603795351394" duration="10245000" />
-      <workItem from="1603818658674" duration="1005000" />
+      <workItem from="1603818658674" duration="1147000" />
+      <workItem from="1603872197065" duration="3746000" />
+      <workItem from="1603961049126" duration="2613000" />
+      <workItem from="1603968610470" duration="67000" />
+      <workItem from="1603968685172" duration="373000" />
+      <workItem from="1603969099011" duration="68000" />
+      <workItem from="1603969178586" duration="9000" />
+      <workItem from="1603969195604" duration="329000" />
+      <workItem from="1603969532433" duration="406000" />
+      <workItem from="1603969946499" duration="401000" />
+      <workItem from="1603970391806" duration="145000" />
+      <workItem from="1603970544567" duration="15000" />
+      <workItem from="1603971539368" duration="7163000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="2703" y="470" key="NewPhpFileDialog" timestamp="1603803490766">
+    <state x="2456" y="336" key="#CLI_Interpreters" timestamp="1603969295461">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2456" y="336" key="#CLI_Interpreters/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603969295461" />
+    <state x="2639" y="349" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603967261117">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2639" y="349" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603967261117" />
+    <state x="2689" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1603979670065">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2689" y="229" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1603979670065" />
+    <state x="2726" y="343" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603988082633">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2726" y="343" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1603988082633" />
+    <state x="2676" y="273" key="NewPhpClassDialog" timestamp="1603988054511">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2676" y="273" key="NewPhpClassDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603967488501" />
+    <state x="2676" y="273" key="NewPhpClassDialog/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1603988054511" />
+    <state x="2703" y="470" key="NewPhpFileDialog" timestamp="1603973046420">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2703" y="470" key="NewPhpFileDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603803490766" />
+    <state x="2703" y="470" key="NewPhpFileDialog/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1603973046420" />
+    <state x="2377" y="313" key="SettingsEditor" timestamp="1603970526071">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2377" y="313" key="SettingsEditor/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603970526071" />
+    <state x="2545" y="255" key="run.anything.popup" timestamp="1603982606705">
+      <screen x="1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2545" y="255" key="run.anything.popup/1920.23.1920.1057/0.23.1920.993@1920.23.1920.1057" timestamp="1603982606705" />
   </component>
 </project>
