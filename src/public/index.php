@@ -9,12 +9,23 @@ use App\DB\QueryBuilder;
 try {
     $pdo = new MysqlDBConnection();
 
-    QueryBuilder::insert([
-        'id' => 1,
-        'firstname' => 'Villy'
-    ], 'participants');
+    $data = [
+        'entity_id'     => 1,
+        'firstname'     => 'Mike',
+        'lastname'      => 'Patterson',
+        'email'         => 'mike_pat@example.org',
+        'position'      => 'president',
+        'shares_amount' => 10000,
+        'start_date'    => date('Y-m-d H:i:s', 1273449600),
+        'parent_id'     => 0,
+    ];
 
-    $pdo->open();
+    $sql = QueryBuilder::insert($data, 'participants');
+
+    $dbCon = $pdo->open();
+    $statement = $dbCon->prepare($sql);
+    $statement->execute($data);
+
 } catch (PDOException $e) {
     die("Could not connect to the database: " . $e->getMessage());
 }
