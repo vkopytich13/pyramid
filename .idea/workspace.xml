@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5cc0f3ff-4fa6-4c7f-9e2e-7b27269508d7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/Config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Setup/ParticipantsTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Setup/ParticipantsTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/php/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DB/QueryBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DB/QueryBuilder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,10 +90,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.php/Dockerfile" />
+        <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.php: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.nginx: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
+        <item itemvalue="Docker.php/Dockerfile" />
       </list>
     </recent_temporary>
   </component>
@@ -119,7 +118,8 @@
       <workItem from="1603969946499" duration="401000" />
       <workItem from="1603970391806" duration="145000" />
       <workItem from="1603970544567" duration="15000" />
-      <workItem from="1603971539368" duration="7163000" />
+      <workItem from="1603971539368" duration="7300000" />
+      <workItem from="1604040053404" duration="10163000" />
     </task>
     <servers />
   </component>
@@ -134,6 +134,14 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2456" y="336" key="#CLI_Interpreters/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603969295461" />
+    <state x="2286" y="376" key="#SQL_Dialects" timestamp="1604057680114">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2286" y="376" key="#SQL_Dialects/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1604057680114" />
+    <state x="2480" y="205" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604057767227">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2480" y="205" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1604057767227" />
     <state x="2639" y="349" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603967261117">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

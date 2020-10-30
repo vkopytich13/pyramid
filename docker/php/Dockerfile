@@ -1,5 +1,7 @@
 FROM php:7.4-fpm-alpine
 
+LABEL maintainer="Vitaly Kopytich"
+
 # Copy application files to contaier
 COPY . /var/www/
 

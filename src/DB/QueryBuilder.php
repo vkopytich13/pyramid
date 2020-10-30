@@ -5,7 +5,7 @@ namespace App\DB;
 
 class QueryBuilder
 {
-    public static function insert(array $data, string $table): string
+    public static function insert(array $data, string $table): ?string
     {
         echo $sql = 'INSERT INTO `' . $table . '` (' . self::fields($data) . ') VALUES (' . self::insertPlaceHolders($data) . ');';
         return $sql;
