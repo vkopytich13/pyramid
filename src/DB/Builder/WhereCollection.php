@@ -38,9 +38,14 @@ class WhereCollection implements CollectionInterface
         $sql = '';
         $counter = 0;
         $total = count($this->whereClause);
+
+        if ($total > 0) {
+            $sql .= ' WHERE ';
+        }
+
         foreach ($this->whereClause as $field => $value) {
             $counter++;
-            $sql .= $field . ':=' . $field;
+            $sql .= $field . '=:' . $field;
             if ($counter < $total) {
                 $sql .= ' AND ';
             }

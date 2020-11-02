@@ -11,14 +11,14 @@ try {
 
     $builder = new Builder();
     $queryBuilder = new QueryBuilder($builder);
-    $queryBuilder->select('participants', ['entity_id', 'firstname', 'lastname', 'email', 'shares_amount'])->andWhere('entity_id', 1);
 
-
-
-//    var_dump($res->getSQL());
+    $queryBuilder->select('participants', ['entity_id', 'firstname', 'lastname', 'email', 'shares_amount'])
+                 ->andWhere('entity_id', 1);
 
     $statement = $dbCon->prepare($queryBuilder->getSQL());
-    $statement->execute();
+    $statement->execute([
+        'entity_id' => 3
+    ]);
 
     echo "<pre>";
     print_r($statement->fetchAll());
@@ -40,7 +40,7 @@ try {
 //
 //    $statement = $dbCon->prepare($sql);
 //    $statement->execute($data);
-//
+
 //    $sql = QueryBuilder::findAll('participants');
 //    $statement = $dbCon->prepare($sql);
 //    $statement->execute();
@@ -48,11 +48,11 @@ try {
 //    echo "<pre>";
 //    print_r($statement->fetchAll());
 //    echo "</pre>";
-
+//
 //    $sql = QueryBuilder::findOneBy('participants');
 //    $statement = $dbCon->prepare($sql);
 //    $statement->execute([
-//        'id' => 1
+//        'id' => 3
 //    ]);
 //
 //    echo "<pre>";

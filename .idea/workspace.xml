@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5cc0f3ff-4fa6-4c7f-9e2e-7b27269508d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -486,7 +507,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution />
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -495,7 +518,7 @@
     <setting file="file://$PROJECT_DIR$/src/DB/MysqlDBConnection.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1jSR90P3LnYrbAdCfP0vOaXDFeQ" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -507,9 +530,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Docker.php/Dockerfile">
@@ -602,6 +627,9 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="2456" y="336" key="#CLI_Interpreters" timestamp="1603969295461">
       <screen x="1920" y="0" width="1920" height="1080" />
@@ -627,6 +655,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2726" y="343" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1603988082633" />
+    <state x="489" y="369" width="461" height="249" key="ComposerInitDialogKey" timestamp="1604344639344">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="489" y="369" width="461" height="249" key="ComposerInitDialogKey/0.0.1440.900@0.0.1440.900" timestamp="1604344639344" />
     <state x="2676" y="273" key="NewPhpClassDialog" timestamp="1603988054511">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -637,9 +669,10 @@
     </state>
     <state x="2703" y="470" key="NewPhpFileDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603803490766" />
     <state x="2703" y="470" key="NewPhpFileDialog/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1603973046420" />
-    <state x="2377" y="313" key="SettingsEditor" timestamp="1603970526071">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="303" y="80" key="SettingsEditor" timestamp="1604345040403">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="303" y="80" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604345040403" />
     <state x="2377" y="313" key="SettingsEditor/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603970526071" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1604328015269">
       <screen x="1920" y="0" width="1920" height="1080" />
@@ -653,5 +686,16 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2545" y="241" width="670" height="676" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1604321484990" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/DB/QueryBuilder.php</url>
+          <line>64</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

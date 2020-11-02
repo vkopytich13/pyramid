@@ -17,7 +17,7 @@ class Builder
     {
         $found = null;
         foreach ($this->collections as $collection) {
-            if ($collection instanceof CollectionInterface) {
+            if ($collection instanceof $className) {
                 $found = $collection;
                 break;
             }
@@ -44,8 +44,6 @@ class Builder
      */
     public function where(): WhereCollection
     {
-        echo "<pre>";
-        var_dump($this->make(WhereCollection::class));
-        echo "</pre>";
+        return $this->make(WhereCollection::class);
     }
 }
