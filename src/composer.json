@@ -1,0 +1,22 @@
+{
+  "name": "vkopytich13/pyramid",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vitaly Kopytich",
+      "email": "kopytich.vitaly@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "./"
+    }
+  },
+  "require-dev": {
+    "fzaninotto/faker": "1.9.1.*"
+  }
+}
