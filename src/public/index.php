@@ -5,28 +5,49 @@ use App\DB\MysqlDBConnection;
 use App\DB\Builder\Builder;
 use App\DB\QueryBuilder;
 
+use App\Entity\Participant;
+use App\Hydration\ParticipantHydrator;
+
 try {
-    $pdo = new MysqlDBConnection();
-    $dbCon = $pdo->open();
-
-    $builder = new Builder();
-    $queryBuilder = new QueryBuilder($builder);
-
-    $whereData = [
-        'entity_id' => 1,
-        'email' => 'mike_pat@example.org',
-        'firstname' => 'Mike'
+    $data = [
+        'entity_id'     => 1,
+        'firstname'     => 'Mike',
+        'lastname'      => 'Patterson',
+        'email'         => 'mike_pat@example.org',
+        'position'      => 'president',
+        'shares_amount' => 10000,
+        'date_created'  => date('Y-m-d H:i:s', 1273449600),
+        'parent_id'     => 0,
     ];
 
-    $sql = $queryBuilder->select('participants', ['entity_id', 'firstname', 'lastname', 'email', 'shares_amount'])
-                 ->andWhere($whereData);
-
-    $statement = $dbCon->prepare($sql->getSQL());
-    $statement->execute($whereData);
+    $entity = ParticipantHydrator::hydrate($data);
 
     echo "<pre>";
-    print_r($statement->fetchAll());
+    print_r($entity);
     echo "</pre>";
+
+
+
+//    $pdo = new MysqlDBConnection();
+//    $dbCon = $pdo->open();
+//
+//    $builder = new Builder();
+//    $queryBuilder = new QueryBuilder($builder);
+//
+//    $whereData = [
+//        'entity_id' => 2,
+//        'firstname' => 'Patrik'
+//    ];
+//
+//    $sql = $queryBuilder->select('participants', ['entity_id', 'firstname', 'lastname', 'email', 'shares_amount'])
+//                 ->andWhere($whereData);
+//
+//    $statement = $dbCon->prepare($sql->getSQL());
+//    $statement->execute($whereData);
+//
+//    echo "<pre>";
+//    print_r($statement->fetchAll());
+//    echo "</pre>";
 
 //    $statement = $dbCon->prepare($queryBuilder->getSQL());
 //    $statement->execute([
