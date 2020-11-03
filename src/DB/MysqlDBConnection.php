@@ -46,4 +46,12 @@ class MysqlDBConnection implements DBConnectionInterface
         }
         return self::$connection;
     }
+
+    /**
+     * Destruct for close DB connection.
+     */
+    public function __destruct()
+    {
+        self::$connection = null;
+    }
 }

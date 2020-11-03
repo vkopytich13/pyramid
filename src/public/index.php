@@ -12,17 +12,30 @@ try {
     $builder = new Builder();
     $queryBuilder = new QueryBuilder($builder);
 
-    $queryBuilder->select('participants', ['entity_id', 'firstname', 'lastname', 'email', 'shares_amount'])
-                 ->andWhere('entity_id', 1);
+    $whereData = [
+        'entity_id' => 1,
+        'email' => 'mike_pat@example.org',
+        'firstname' => 'Mike'
+    ];
 
-    $statement = $dbCon->prepare($queryBuilder->getSQL());
-    $statement->execute([
-        'entity_id' => 3
-    ]);
+    $sql = $queryBuilder->select('participants', ['entity_id', 'firstname', 'lastname', 'email', 'shares_amount'])
+                 ->andWhere($whereData);
+
+    $statement = $dbCon->prepare($sql->getSQL());
+    $statement->execute($whereData);
 
     echo "<pre>";
     print_r($statement->fetchAll());
     echo "</pre>";
+
+//    $statement = $dbCon->prepare($queryBuilder->getSQL());
+//    $statement->execute([
+//        'entity_id' => 3
+//    ]);
+//
+//    echo "<pre>";
+//    print_r($statement->fetchAll());
+//    echo "</pre>";
 
 
 //    $data = [
@@ -44,6 +57,10 @@ try {
 //    $sql = QueryBuilder::findAll('participants');
 //    $statement = $dbCon->prepare($sql);
 //    $statement->execute();
+
+//    $sql = QueryBuilder::findOneBy('participants');
+//    $statement = $dbCon->prepare($sql);
+//    $statement->execute(['entity_id' => 1]);
 //
 //    echo "<pre>";
 //    print_r($statement->fetchAll());

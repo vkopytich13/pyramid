@@ -40,13 +40,12 @@ class QueryCreate implements QueryBuilderInterface
     }
 
     /**
-     * @param string $field
-     * @param $value
+     * @param array $fields
      * @return QueryBuilderInterface
      */
-    public function andWhere(string $field, $value): QueryBuilderInterface
+    public function andWhere(array $fields = []): QueryBuilderInterface
     {
-        $this->builder->where()->add($field, $value);
+        $this->builder->where()->set($fields);
         $this->sql .= $this->builder->where()->getSQL();
 
         return $this;

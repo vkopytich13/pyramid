@@ -54,7 +54,7 @@ class QueryBuilder extends QueryCreate implements QueryBuilderInterface
      */
     public static function findOneBy(string $table): string
     {
-        return "SELECT * FROM {$table} WHERE entity_id=:id";
+        return "SELECT * FROM {$table} WHERE entity_id=:entity_id";
     }
 
     /**
