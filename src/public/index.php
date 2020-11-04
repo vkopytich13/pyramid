@@ -5,10 +5,45 @@ use App\DB\MysqlDBConnection;
 use App\DB\Builder\Builder;
 use App\DB\QueryBuilder;
 
-use App\Entity\Participant;
 use App\Hydration\ParticipantHydrator;
 
+use App\Model\ParticipantModel;
+
 try {
+
+    $data = [
+        'firstname'     => 'Vitaly',
+        'lastname'      => 'Kopytich',
+        'email'         => 'v12@example.org',
+        'position'      => 'good boy',
+        'shares_amount' => 1,
+        'parent_id'     => 0,
+    ];
+
+    $connection = new MysqlDBConnection();
+    $builder = new Builder();
+    $queryBuilder = new QueryBuilder($builder);
+    $modelParticipant = new ParticipantModel($connection, $queryBuilder);
+    $president = ParticipantHydrator::hydrate($data);
+
+    $sql = "INSERT INTO participants VALUES (250,'Mike','Patterson','mike_pat2@example.org','president',10000,'2010-05-10 00:00:00',0)";
+
+    $dbCon = $connection->open();
+    $statement = $dbCon->prepare($sql);
+    $statement->execute();
+
+
+    echo "<pre>";
+    var_dump($statement->fetchAll());
+    echo "</pre>";
+//
+//    $savedEntity = $modelParticipant->save($president);
+//
+//    echo "<pre>";
+//    print_r($savedEntity);
+//    echo "</pre>";
+
+
 //    $data = [
 //        'entity_id'     => 1,
 //        'firstname'     => 'Mike',
@@ -28,35 +63,35 @@ try {
 
 
 
-    $pdo = new MysqlDBConnection();
-    $dbCon = $pdo->open();
-
-    $builder = new Builder();
-    $queryBuilder = new QueryBuilder($builder);
-
-    $whereData = [
-        'entity_id' => 1,
-        'email' => 'mike_pat@example.org'
-    ];
-
-    $sql = $queryBuilder->select('participants')
-                 ->andWhere($whereData);
-
-    $statement = $dbCon->prepare($sql->getSQL());
-    $statement->execute($whereData);
-
-    if (empty($statement->fetch())) {
-        $sql = QueryBuilder::cleanAll('participants');
-        $statement = $dbCon->prepare($sql);
-        $statement->execute();
-        echo 'All are clean!';
-    } else {
-        echo 'good!';
-    }
-
-    echo "<pre>";
-    print_r($statement->fetch());
-    echo "</pre>";
+//    $pdo = new MysqlDBConnection();
+//    $dbCon = $pdo->open();
+//
+//    $builder = new Builder();
+//    $queryBuilder = new QueryBuilder($builder);
+//
+//    $whereData = [
+//        'entity_id' => 1,
+//        'email' => 'mike_pat@example.org'
+//    ];
+//
+//    $sql = $queryBuilder->select('participants')
+//                 ->andWhere($whereData);
+//
+//    $statement = $dbCon->prepare($sql->getSQL());
+//    $statement->execute($whereData);
+//
+//    if (empty($statement->fetch())) {
+//        $sql = QueryBuilder::cleanAll('participants');
+//        $statement = $dbCon->prepare($sql);
+//        $statement->execute();
+//        echo 'All are clean!';
+//    } else {
+//        echo 'good!';
+//    }
+//
+//    echo "<pre>";
+//    print_r($statement->fetch());
+//    echo "</pre>";
 
 //    $statement = $dbCon->prepare($queryBuilder->getSQL());
 //    $statement->execute([

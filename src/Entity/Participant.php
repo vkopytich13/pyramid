@@ -27,15 +27,8 @@ class Participant extends AbstractEntity implements GenericEntityInterface
     public function __toString(): string
     {
         $names = [];
-        if (!empty($this->firstname)) {
-            $names[] = $this->firstname;
-        }
-
-        if (!empty($this->firstname)) {
-            $names[] = $this->firstname;
-        }
-//        $names[] = $this->firstname ?? null;
-//        $names[] = $this->lastname ?? null;
+        $names[] = $this->firstname ?? null;
+        $names[] = $this->lastname ?? null;
 
         return implode(' ', $names);
     }
