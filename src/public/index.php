@@ -9,45 +9,54 @@ use App\Entity\Participant;
 use App\Hydration\ParticipantHydrator;
 
 try {
-    $data = [
-        'entity_id'     => 1,
-        'firstname'     => 'Mike',
-        'lastname'      => 'Patterson',
-        'email'         => 'mike_pat@example.org',
-        'position'      => 'president',
-        'shares_amount' => 10000,
-        'date_created'  => date('Y-m-d H:i:s', 1273449600),
-        'parent_id'     => 0,
-    ];
-
-    $entity = ParticipantHydrator::hydrate($data);
-
-    echo "<pre>";
-    print_r($entity);
-    echo "</pre>";
-
-
-
-//    $pdo = new MysqlDBConnection();
-//    $dbCon = $pdo->open();
-//
-//    $builder = new Builder();
-//    $queryBuilder = new QueryBuilder($builder);
-//
-//    $whereData = [
-//        'entity_id' => 2,
-//        'firstname' => 'Patrik'
+//    $data = [
+//        'entity_id'     => 1,
+//        'firstname'     => 'Mike',
+//        'lastname'      => 'Patterson',
+//        'email'         => 'mike_pat@example.org',
+//        'position'      => 'president',
+//        'shares_amount' => 10000,
+//        'date_created'  => date('Y-m-d H:i:s', 1273449600),
+//        'parent_id'     => 0,
 //    ];
 //
-//    $sql = $queryBuilder->select('participants', ['entity_id', 'firstname', 'lastname', 'email', 'shares_amount'])
-//                 ->andWhere($whereData);
-//
-//    $statement = $dbCon->prepare($sql->getSQL());
-//    $statement->execute($whereData);
+//    $entity = ParticipantHydrator::hydrate($data);
 //
 //    echo "<pre>";
-//    print_r($statement->fetchAll());
+//    print_r($entity);
 //    echo "</pre>";
+
+
+
+    $pdo = new MysqlDBConnection();
+    $dbCon = $pdo->open();
+
+    $builder = new Builder();
+    $queryBuilder = new QueryBuilder($builder);
+
+    $whereData = [
+        'entity_id' => 1,
+        'email' => 'mike_pat@example.org'
+    ];
+
+    $sql = $queryBuilder->select('participants')
+                 ->andWhere($whereData);
+
+    $statement = $dbCon->prepare($sql->getSQL());
+    $statement->execute($whereData);
+
+    if (empty($statement->fetch())) {
+        $sql = QueryBuilder::cleanAll('participants');
+        $statement = $dbCon->prepare($sql);
+        $statement->execute();
+        echo 'All are clean!';
+    } else {
+        echo 'good!';
+    }
+
+    echo "<pre>";
+    print_r($statement->fetch());
+    echo "</pre>";
 
 //    $statement = $dbCon->prepare($queryBuilder->getSQL());
 //    $statement->execute([
