@@ -14,34 +14,29 @@ try {
     $data = [
         'firstname'     => 'Vitaly',
         'lastname'      => 'Kopytich',
-        'email'         => 'v12@example.org',
-        'position'      => 'good boy',
-        'shares_amount' => 1,
-        'parent_id'     => 0,
+        'email'         => 'v12311@example.org',
+        'position'      => 'novice',
+        'shares_amount' => 0,
+        'parent_id'     => 1,
     ];
 
     $connection = new MysqlDBConnection();
     $builder = new Builder();
     $queryBuilder = new QueryBuilder($builder);
     $modelParticipant = new ParticipantModel($connection, $queryBuilder);
-    $president = ParticipantHydrator::hydrate($data);
 
-    $sql = "INSERT INTO participants VALUES (250,'Mike','Patterson','mike_pat2@example.org','president',10000,'2010-05-10 00:00:00',0)";
+    $user = ParticipantHydrator::hydrate($data);
 
-    $dbCon = $connection->open();
-    $statement = $dbCon->prepare($sql);
-    $statement->execute();
 
+    // creating the first user - president of pyramid
+    $savedFirst = $modelParticipant->saveFirst();
+
+    // creating just a usual user
+    $savedUser = $modelParticipant->save($user);
 
     echo "<pre>";
-    var_dump($statement->fetchAll());
+    var_dump($user);
     echo "</pre>";
-//
-//    $savedEntity = $modelParticipant->save($president);
-//
-//    echo "<pre>";
-//    print_r($savedEntity);
-//    echo "</pre>";
 
 
 //    $data = [

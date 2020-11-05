@@ -97,7 +97,7 @@ class QueryBuilder extends QueryCreate implements QueryBuilderInterface
         return $sql;
     }
 
-    public static function cleanAll(string $tableName): string
+    public static function cleanOut(string $tableName): string
     {
         return "TRUNCATE TABLE {$tableName}";
     }

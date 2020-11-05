@@ -2,11 +2,12 @@
 
 namespace App\DB;
 use PDO;
+use PDOStatement;
 
 class MysqlDBConnection implements DBConnectionInterface
 {
     /**
-     * @var
+     * @var PDO
      */
     private static $connection;
 
@@ -38,7 +39,7 @@ class MysqlDBConnection implements DBConnectionInterface
         if (!self::$connection instanceof PDO) {
             $username = $creds['username'];
             $password = $creds['password'];
-            $host = $creds['host'];
+            $host     = $creds['host'];
             $database = $creds['database'];
 
             $dsn = 'mysql:host=' . $host . ';dbname=' . $database;
@@ -48,10 +49,23 @@ class MysqlDBConnection implements DBConnectionInterface
     }
 
     /**
+     * @param $sql
+     * @param null $args
+     * @return bool|PDOStatement
+     */
+    public function run($sql, $args = null): PDOStatement
+    {
+        $statement = $this->open()->prepare($sql);
+        $statement->execute($args);
+        return $statement;
+    }
+
+    /**
      * Destruct for close DB connection.
      */
     public function __destruct()
     {
         self::$connection = null;
+        echo '<br/>Successfully disconnected from the database!';
     }
 }

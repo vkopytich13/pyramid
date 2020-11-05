@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use DateTime;
-
 class Participant extends AbstractEntity implements GenericEntityInterface
 {
     /** @var string */
