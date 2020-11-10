@@ -6,6 +6,8 @@ use App\DB\QueryBuilder;
 use App\Entity\Participant;
 use App\Hydration\ParticipantHydrator;
 use Exception;
+use Faker;
+
 
 class ParticipantModel extends AbstractModel
 {
@@ -14,7 +16,33 @@ class ParticipantModel extends AbstractModel
     const VICE_PRESIDENT = 'vice president';
     const MANAGER = 'manager';
     const NOVICE = 'novice';
+    const COUNT_USERS = 2;
 
+    public function generateNestedUsers()
+    {
+        $faker = Faker\Factory::create();
+        $this->saveFirst();
+
+        $results = [];
+        for ($i=2; $i <= self::COUNT_USERS; $i++) {
+            $data = [
+                'firstname'     => $faker->firstName,
+                'lastname'      => $faker->lastName,
+                'email'         => $faker->safeEmail,
+                'position'      => $faker->randomElement([self::MANAGER, self::NOVICE]),
+                'shares_amount' => $faker->numberBetween(0, 500),
+                'parent_id'     => $i,
+            ];
+
+            $user = ParticipantHydrator::hydrate($data);
+
+            $results[] = $this->save($user);
+        }
+        echo "<pre>";
+        var_dump($results);
+        echo "</pre>";
+
+    }
 
     /**
      * @return Participant
@@ -75,7 +103,7 @@ class ParticipantModel extends AbstractModel
         $user = $this->findByEmail($data['email']);
 
         if ($user === null) {
-            echo $sql = QueryBuilder::insert($data, self::TABLE);
+            $sql = QueryBuilder::insert($data, self::TABLE);
             $this->connection->run($sql, $data);
 
             if ($entity->getId() === null) {

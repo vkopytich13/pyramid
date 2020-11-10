@@ -9,6 +9,9 @@ use App\Hydration\ParticipantHydrator;
 
 use App\Model\ParticipantModel;
 
+use App\Generator\ParticipantGenerator;
+
+
 try {
 
     $data = [
@@ -25,7 +28,7 @@ try {
     $queryBuilder = new QueryBuilder($builder);
     $modelParticipant = new ParticipantModel($connection, $queryBuilder);
 
-//    $user = ParticipantHydrator::hydrate($data);
+    $user = ParticipantHydrator::hydrate($data);
 
     $users = $modelParticipant->findAll(ParticipantModel::TABLE);
 
@@ -35,10 +38,7 @@ try {
     // creating just a usual user
 //    $savedUser = $modelParticipant->save($user);
 
-    echo "<pre>";
-    var_dump($users);
-    echo "</pre>";
-
+    $modelParticipant->generateNestedUsers();
 
 //    $data = [
 //        'entity_id'     => 1,
