@@ -25,17 +25,18 @@ try {
     $queryBuilder = new QueryBuilder($builder);
     $modelParticipant = new ParticipantModel($connection, $queryBuilder);
 
-    $user = ParticipantHydrator::hydrate($data);
+//    $user = ParticipantHydrator::hydrate($data);
 
+    $users = $modelParticipant->findAll(ParticipantModel::TABLE);
 
     // creating the first user - president of pyramid
-    $savedFirst = $modelParticipant->saveFirst();
+//    $savedFirst = $modelParticipant->saveFirst();
 
     // creating just a usual user
-    $savedUser = $modelParticipant->save($user);
+//    $savedUser = $modelParticipant->save($user);
 
     echo "<pre>";
-    var_dump($user);
+    var_dump($users);
     echo "</pre>";
 
 

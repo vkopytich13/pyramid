@@ -9,11 +9,11 @@ use Exception;
 
 class ParticipantModel extends AbstractModel
 {
-    private const TABLE = 'participants';
-    private const PRESIDENT = 'president';
-    private const VICE_PRESIDENT = 'vice president';
-    private const MANAGER = 'manager';
-    private const NOVICE = 'novice';
+    const TABLE = 'participants';
+    const PRESIDENT = 'president';
+    const VICE_PRESIDENT = 'vice president';
+    const MANAGER = 'manager';
+    const NOVICE = 'novice';
 
 
     /**
