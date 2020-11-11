@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS participants (
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     email VARCHAR(250) UNIQUE KEY,
-    position VARCHAR(30),
+    position VARCHAR(30) DEFAULT 'novice',
     shares_amount INT(10) UNSIGNED DEFAULT 0,
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     parent_id INT(6) UNSIGNED NOT NULL

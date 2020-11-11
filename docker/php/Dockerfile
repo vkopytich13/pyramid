@@ -5,11 +5,8 @@ LABEL maintainer="Vitaly Kopytich"
 # Copy application files to contaier
 COPY . /var/www/
 
-# Copy PHP config file to container
-COPY docker/php/php.ini /usr/local/etc/php/
-
 # Install PDO
-RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Install composer and make command global
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

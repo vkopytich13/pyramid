@@ -16,15 +16,17 @@ class ParticipantModel extends AbstractModel
     const VICE_PRESIDENT = 'vice president';
     const MANAGER = 'manager';
     const NOVICE = 'novice';
-    const COUNT_USERS = 2;
+    const COUNT_USERS = 5;
 
     public function generateNestedUsers()
     {
         $faker = Faker\Factory::create();
         $this->saveFirst();
 
-        $results = [];
-        for ($i=2; $i <= self::COUNT_USERS; $i++) {
+        for ($i=1; $i <= self::COUNT_USERS; $i++) {
+            echo "<pre>";
+            var_dump($i);
+            echo "</pre>";
             $data = [
                 'firstname'     => $faker->firstName,
                 'lastname'      => $faker->lastName,
@@ -36,12 +38,8 @@ class ParticipantModel extends AbstractModel
 
             $user = ParticipantHydrator::hydrate($data);
 
-            $results[] = $this->save($user);
+            $this->save($user);
         }
-        echo "<pre>";
-        var_dump($results);
-        echo "</pre>";
-
     }
 
     /**

@@ -6,9 +6,6 @@ use PDOStatement;
 
 class MysqlDBConnection implements DBConnectionInterface
 {
-    /**
-     * @var PDO
-     */
     private static $connection;
 
     /**

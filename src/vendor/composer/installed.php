@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '06366d830fe365e7ee7e0fb89d68a0db79b83b13',
+    'reference' => '472298341d86abcdb69b39f3f97299d74ffb2abf',
     'name' => 'vkopytich13/pyramid',
   ),
   'versions' => 
@@ -27,7 +27,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '06366d830fe365e7ee7e0fb89d68a0db79b83b13',
+      'reference' => '472298341d86abcdb69b39f3f97299d74ffb2abf',
     ),
   ),
 );

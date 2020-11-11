@@ -9,6 +9,7 @@ if (!(PHP_VERSION_ID >= 50303)) {
 }
 
 $missingExtensions = array();
+extension_loaded('mysqli') || $missingExtensions[] = 'mysqli';
 extension_loaded('pdo') || $missingExtensions[] = 'pdo';
 
 if ($missingExtensions) {
