@@ -8,7 +8,6 @@ use App\Hydration\ParticipantHydrator;
 use Exception;
 use Faker;
 
-
 class ParticipantModel extends AbstractModel
 {
     const TABLE = 'participants';
@@ -24,9 +23,6 @@ class ParticipantModel extends AbstractModel
         $this->saveFirst();
 
         for ($i=1; $i <= self::COUNT_USERS; $i++) {
-            echo "<pre>";
-            var_dump($i);
-            echo "</pre>";
             $data = [
                 'firstname'     => $faker->firstName,
                 'lastname'      => $faker->lastName,
@@ -37,15 +33,15 @@ class ParticipantModel extends AbstractModel
             ];
 
             $user = ParticipantHydrator::hydrate($data);
+            echo "<pre>";
+            var_dump($user);
+            echo "</pre>";
 
             $this->save($user);
         }
     }
 
-    /**
-     * @return Participant
-     */
-    public function saveFirst(): Participant
+    public function saveFirst(): ?Participant
     {
         $data = [
             'entity_id'     => 1,
@@ -63,9 +59,11 @@ class ParticipantModel extends AbstractModel
             'email' => $data['email'],
         ];
 
-        $sql = QueryBuilder::findAllBy(self::TABLE, $where);
-        $findRow = $this->connection->run($sql, $where)->fetch();
+//        $sql = QueryBuilder::findAllBy(self::TABLE, $where);
+//        $findRow = $this->connection->run($sql, $where)->fetch();
 
+        $findRow = $this->findOne(1);
+        var_dump($findRow);
         if (!$findRow) {
             echo "Miss matches the main user. Generating the main user... President is here!<br/>";
 
@@ -75,11 +73,12 @@ class ParticipantModel extends AbstractModel
             $sql = QueryBuilder::insert($data, self::TABLE);
             $this->connection->run($sql, $data);
 
-            return ParticipantHydrator::hydrate($data);
+            return ParticipantHydrator::hydrate((array)$data);
         } else {
             echo "President already exists! It's all good!<br/>";
-            return ParticipantHydrator::hydrate($findRow);
+            return ParticipantHydrator::hydrate((array)$findRow);
         }
+
     }
 
     /**
@@ -89,12 +88,14 @@ class ParticipantModel extends AbstractModel
      */
     public function save(Participant $entity): ?Participant
     {
+
         $data = [
             'firstname'     => $entity->getFirstName(),
             'lastname'      => $entity->getLastName(),
             'email'         => $entity->getEmail(),
             'position'      => $entity->getPosition(),
             'shares_amount' => $entity->getSharesAmount(),
+            'date_created'  => $entity->getDateCreated(),
             'parent_id'     => $entity->getParentId(),
         ];
 
@@ -102,7 +103,7 @@ class ParticipantModel extends AbstractModel
 
         if ($user === null) {
             $sql = QueryBuilder::insert($data, self::TABLE);
-            $this->connection->run($sql, $data);
+            var_dump($this->connection->run($sql, $data));
 
             if ($entity->getId() === null) {
                 $entity->setId((int)$this->connection->open()->lastInsertId());
@@ -125,7 +126,8 @@ class ParticipantModel extends AbstractModel
 
         $statement = $dbCon->prepare($sql);
         $statement->execute([
-            'entity_id' => $id
+            'entity_id' => $id,
+            'email' => 'mike_pat@example.org',
         ]);
         $findRow = $statement->fetch();
 
@@ -156,6 +158,7 @@ class ParticipantModel extends AbstractModel
         if (!empty($findRow)) {
             $entity = ParticipantHydrator::hydrate($findRow);
         }
+        $dbCon = null;
 
         return $entity;
     }

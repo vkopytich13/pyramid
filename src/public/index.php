@@ -22,20 +22,20 @@ try {
     $user = ParticipantHydrator::hydrate($data);
 
     $connection = new MysqlDBConnection();
-    $builder = new Builder();
-    $queryBuilder = new QueryBuilder($builder);
+//    $builder = new Builder();
+    $queryBuilder = new QueryBuilder();
     $modelParticipant = new ParticipantModel($connection, $queryBuilder);
 
     // creating the first user - president of pyramid
-    $savedFirst = $modelParticipant->saveFirst();
+//    $savedFirst = $modelParticipant->saveFirst();
 
     // creating just a usual user
 //    $savedUser = $modelParticipant->save($user);
 
     $res = $modelParticipant->generateNestedUsers();
-//    echo "<pre>";
-//    print_r($res);
-//    echo "</pre>";
+    echo "<pre>";
+    print_r($res);
+    echo "</pre>";
 
 
 } catch (PDOException $e) {

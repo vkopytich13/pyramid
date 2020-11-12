@@ -12,9 +12,9 @@ abstract class AbstractEntity
     protected ?int $id;
 
     /**
-     * @var DateTime|null
+     * @var string|null
      */
-    protected ?DateTime $dateCreated;
+    protected ?string $dateCreated;
 
     /**
      * @return int|null
@@ -35,18 +35,18 @@ abstract class AbstractEntity
     }
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDateCreated(): ?DateTime
+    public function getDateCreated(): ?string
     {
         return $this->dateCreated;
     }
 
     /**
-     * @param DateTime|null $dateCreated
+     * @param string|null $dateCreated
      * @return AbstractEntity
      */
-    public function setDateCreated(?DateTime $dateCreated): AbstractEntity
+    public function setDateCreated(?string $dateCreated): AbstractEntity
     {
         $this->dateCreated = $dateCreated;
         return $this;

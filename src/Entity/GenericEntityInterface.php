@@ -17,12 +17,12 @@ interface GenericEntityInterface
     public function setId(?int $id);
 
     /**
-     * @return DateTime|null
+     * @return string|null
      */
-    public function getDateCreated(): ?DateTime;
+    public function getDateCreated(): ?string;
 
     /**
-     * @param DateTime|null $dateCreated
+     * @param string|null $dateCreated
      */
-    public function setDateCreated(?DateTime $dateCreated);
+    public function setDateCreated(?string $dateCreated);
 }

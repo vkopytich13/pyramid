@@ -2,7 +2,7 @@
 
 namespace App\DB;
 
-class QueryBuilder extends QueryCreate implements QueryBuilderInterface
+class QueryBuilder
 {
     /**
      * @param array $data
@@ -21,6 +21,7 @@ class QueryBuilder extends QueryCreate implements QueryBuilderInterface
     protected static function insertPlaceHolders(array $data = []): string
     {
         $placeholders = array_keys($data);
+
         $sql = '';
         for ($i=0; $i < count($placeholders); $i++) {
             if ($i > 0) {
@@ -28,6 +29,7 @@ class QueryBuilder extends QueryCreate implements QueryBuilderInterface
             }
             $sql .= ':' . $placeholders[$i];
         }
+
         return $sql;
     }
 
@@ -54,7 +56,7 @@ class QueryBuilder extends QueryCreate implements QueryBuilderInterface
      */
     public static function findOneBy(string $table): string
     {
-        return "SELECT * FROM {$table} WHERE entity_id=:entity_id";
+        return "SELECT * FROM {$table} WHERE entity_id=:entity_id AND email=:email";
     }
 
     /**
