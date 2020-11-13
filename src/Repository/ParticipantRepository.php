@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Generator;
+namespace App\Repository;
 
-class ParticipantGenerator
+class ParticipantRepository
 {
     public static function generateNestedUsers(int $countRecords): array
     {

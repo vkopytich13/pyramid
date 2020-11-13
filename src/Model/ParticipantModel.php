@@ -15,8 +15,9 @@ class ParticipantModel extends AbstractModel
     const VICE_PRESIDENT = 'vice president';
     const MANAGER = 'manager';
     const NOVICE = 'novice';
-    const COUNT_USERS = 5;
+    const COUNT_USERS = 10;
 
+//    parent_id from DB
     public function generateNestedUsers()
     {
         $faker = Faker\Factory::create();
@@ -28,7 +29,7 @@ class ParticipantModel extends AbstractModel
                 'lastname'      => $faker->lastName,
                 'email'         => $faker->safeEmail,
                 'position'      => $faker->randomElement([self::MANAGER, self::NOVICE]),
-                'shares_amount' => $faker->numberBetween(0, 500),
+                'shares_amount' => $faker->numberBetween(1, 500),
                 'parent_id'     => $i,
             ];
 
@@ -41,7 +42,7 @@ class ParticipantModel extends AbstractModel
         }
     }
 
-    public function saveFirst(): ?Participant
+    public function saveFirst(): bool
     {
         $data = [
             'entity_id'     => 1,
@@ -54,17 +55,18 @@ class ParticipantModel extends AbstractModel
             'parent_id'     => 0,
         ];
 
-        $where = [
-            'entity_id' => $data['entity_id'],
-            'email' => $data['email'],
-        ];
+//        $where = [
+//            'entity_id' => $data['entity_id'],
+//            'email' => $data['email'],
+//            'position'      => self::PRESIDENT,
+//        ];
 
 //        $sql = QueryBuilder::findAllBy(self::TABLE, $where);
 //        $findRow = $this->connection->run($sql, $where)->fetch();
 
         $findRow = $this->findOne(1);
         var_dump($findRow);
-        if (!$findRow) {
+        if ($findRow === null) {
             echo "Miss matches the main user. Generating the main user... President is here!<br/>";
 
             $sql = QueryBuilder::cleanOut(self::TABLE);
@@ -73,7 +75,7 @@ class ParticipantModel extends AbstractModel
             $sql = QueryBuilder::insert($data, self::TABLE);
             $this->connection->run($sql, $data);
 
-            return ParticipantHydrator::hydrate((array)$data);
+            return ParticipantHydrator::hydrate($data);
         } else {
             echo "President already exists! It's all good!<br/>";
             return ParticipantHydrator::hydrate((array)$findRow);

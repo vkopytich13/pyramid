@@ -22,7 +22,7 @@ try {
     $user = ParticipantHydrator::hydrate($data);
 
     $connection = new MysqlDBConnection();
-//    $builder = new Builder();
+    $builder = new Builder();
     $queryBuilder = new QueryBuilder();
     $modelParticipant = new ParticipantModel($connection, $queryBuilder);
 
