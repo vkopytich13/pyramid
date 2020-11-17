@@ -56,7 +56,7 @@ class QueryBuilder
      */
     public static function findOneBy(string $table): string
     {
-        return "SELECT * FROM {$table} WHERE entity_id=:entity_id AND email=:email";
+        return "SELECT * FROM {$table} WHERE entity_id=:entity_id";
     }
 
     /**

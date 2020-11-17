@@ -5,17 +5,16 @@ namespace App\Model;
 use App\DB\QueryBuilder;
 use App\Entity\Participant;
 use App\Hydration\ParticipantHydrator;
-use Exception;
 use Faker;
 
 class ParticipantModel extends AbstractModel
 {
-    const TABLE = 'participants';
-    const PRESIDENT = 'president';
+    const TABLE          = 'participants';
+    const PRESIDENT      = 'president';
     const VICE_PRESIDENT = 'vice president';
-    const MANAGER = 'manager';
-    const NOVICE = 'novice';
-    const COUNT_USERS = 10;
+    const MANAGER        = 'manager';
+    const NOVICE         = 'novice';
+    const COUNT_USERS    = 5;
 
 //    parent_id from DB
     public function generateNestedUsers()
@@ -24,25 +23,33 @@ class ParticipantModel extends AbstractModel
         $this->saveFirst();
 
         for ($i=1; $i <= self::COUNT_USERS; $i++) {
+            echo "<pre>";
+            var_dump($i);
+            echo "</pre>";
             $data = [
                 'firstname'     => $faker->firstName,
                 'lastname'      => $faker->lastName,
                 'email'         => $faker->safeEmail,
                 'position'      => $faker->randomElement([self::MANAGER, self::NOVICE]),
                 'shares_amount' => $faker->numberBetween(1, 500),
+                'date_created'  => $faker->dateTimeBetween($startDate = date('Y-m-d H:i:s', 1273449600), $endDate = '-01 days')->format('Y-m-d H:i:s'),
                 'parent_id'     => $i,
             ];
 
-            $user = ParticipantHydrator::hydrate($data);
             echo "<pre>";
-            var_dump($user);
+            var_dump($data);
             echo "</pre>";
 
-            $this->save($user);
+            $this->saveOne($data);
         }
     }
 
-    public function saveFirst(): bool
+    /**
+     * Inserting the main user (President) in the table 'Participants'.
+     *
+     * @return void
+     */
+    public function saveFirst(): void
     {
         $data = [
             'entity_id'     => 1,
@@ -54,115 +61,100 @@ class ParticipantModel extends AbstractModel
             'date_created'  => date('Y-m-d H:i:s', 1273449600),
             'parent_id'     => 0,
         ];
+        $findRow = $this->findOne($data['entity_id']);
 
-//        $where = [
-//            'entity_id' => $data['entity_id'],
-//            'email' => $data['email'],
-//            'position'      => self::PRESIDENT,
-//        ];
-
-//        $sql = QueryBuilder::findAllBy(self::TABLE, $where);
-//        $findRow = $this->connection->run($sql, $where)->fetch();
-
-        $findRow = $this->findOne(1);
-        var_dump($findRow);
-        if ($findRow === null) {
+        if (!$findRow) {
             echo "Miss matches the main user. Generating the main user... President is here!<br/>";
 
-            $sql = QueryBuilder::cleanOut(self::TABLE);
-            $this->connection->run($sql);
+            $this->cleanAll(self::TABLE);
+            $this->saveOne($data);
 
-            $sql = QueryBuilder::insert($data, self::TABLE);
-            $this->connection->run($sql, $data);
-
-            return ParticipantHydrator::hydrate($data);
+            die();
         } else {
-            echo "President already exists! It's all good!<br/>";
-            return ParticipantHydrator::hydrate((array)$findRow);
-        }
+            if ($findRow['email'] !== $data['email']) {
+                echo "Miss matches the main user with admin email. Generating the main user... President is here!<br/>";
 
-    }
+                $this->cleanAll(self::TABLE);
+                $this->saveOne($data);
 
-    /**
-     * @param Participant $entity
-     * @return Participant|null
-     * @throws Exception
-     */
-    public function save(Participant $entity): ?Participant
-    {
-
-        $data = [
-            'firstname'     => $entity->getFirstName(),
-            'lastname'      => $entity->getLastName(),
-            'email'         => $entity->getEmail(),
-            'position'      => $entity->getPosition(),
-            'shares_amount' => $entity->getSharesAmount(),
-            'date_created'  => $entity->getDateCreated(),
-            'parent_id'     => $entity->getParentId(),
-        ];
-
-        $user = $this->findByEmail($data['email']);
-
-        if ($user === null) {
-            $sql = QueryBuilder::insert($data, self::TABLE);
-            var_dump($this->connection->run($sql, $data));
-
-            if ($entity->getId() === null) {
-                $entity->setId((int)$this->connection->open()->lastInsertId());
+                die();
             }
-            return $entity;
-        } else {
-            throw new \PDOException("Table has the same user with such email - " . $data['email']);
+
+            echo "President already exists! It's all good!<br/>";
         }
     }
 
     /**
-     * @param int $id
-     * @return Participant|null
+     * Inserting one record in the table 'Participants'.
+     *
+     * @param array $user
+     * @return Participant
      */
-    public function findOne(int $id): ?Participant
+    public function saveOne(array $user): Participant
     {
-        $entity = null;
+        $findUser = $this->findByEmail($user['email']);
+
+        if (!$findUser) {
+            $sql = QueryBuilder::insert($user, self::TABLE);
+            $dbCon = $this->connection->open();
+
+            $statement = $dbCon->prepare($sql);
+            $statement->execute($user);
+
+            return ParticipantHydrator::hydrate($user);
+        } else {
+            throw new \PDOException("Table has the same user with such email - {$user['email']}");
+        }
+    }
+
+    /**
+     * Search record by ID.
+     *
+     * @param int $id
+     * @return array|bool
+     */
+    public function findOne(int $id)
+    {
         $sql = QueryBuilder::findOneBy(self::TABLE);
         $dbCon = $this->connection->open();
 
         $statement = $dbCon->prepare($sql);
         $statement->execute([
-            'entity_id' => $id,
-            'email' => 'mike_pat@example.org',
+            'entity_id' => $id
         ]);
-        $findRow = $statement->fetch();
 
-        if (!empty($findRow)) {
-            $entity = ParticipantHydrator::hydrate($findRow);
-        }
-
-        return $entity;
+        return $statement->fetch();
     }
 
     /**
+     * Search record by email.
+     *
      * @param string $email
-     * @return Participant|null
+     * @return array|bool
      */
-    public function findByEmail(string $email): ?Participant
+    public function findByEmail(string $email)
     {
-        $entity = null;
         $where = ['email' => $email];
         $sql = QueryBuilder::findAllBy(self::TABLE, $where);
         $dbCon = $this->connection->open();
+        $statement = $dbCon->prepare($sql);
+        $statement->execute($where);
+
+        return $statement->fetch();
+    }
+
+    /**
+     * Truncate all rows from table.
+     *
+     * @param string $tableName
+     */
+    public function cleanAll(string $tableName)
+    {
+        $sql = QueryBuilder::cleanOut($tableName);
+        $dbCon = $this->connection->open();
 
         $statement = $dbCon->prepare($sql);
-        $statement->execute([
-            'email' => $email
-        ]);
-
-        $findRow = $statement->fetch();
-        if (!empty($findRow)) {
-            $entity = ParticipantHydrator::hydrate($findRow);
-        }
-        $dbCon = null;
-
-        return $entity;
+        $statement->execute();
     }
 
     // method for check affiliates quantity

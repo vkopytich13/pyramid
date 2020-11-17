@@ -32,6 +32,8 @@ try {
     // creating just a usual user
 //    $savedUser = $modelParticipant->save($user);
 
+//    $savedUser = $modelParticipant->saveOne($data);
+
     $res = $modelParticipant->generateNestedUsers();
     echo "<pre>";
     print_r($res);
