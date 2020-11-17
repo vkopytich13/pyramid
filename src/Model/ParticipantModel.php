@@ -47,9 +47,9 @@ class ParticipantModel extends AbstractModel
     /**
      * Inserting the main user (President) in the table 'Participants'.
      *
-     * @return void
+     * @return Participant
      */
-    public function saveFirst(): void
+    public function saveFirst(): Participant
     {
         $data = [
             'entity_id'     => 1,
@@ -67,20 +67,17 @@ class ParticipantModel extends AbstractModel
             echo "Miss matches the main user. Generating the main user... President is here!<br/>";
 
             $this->cleanAll(self::TABLE);
-            $this->saveOne($data);
-
-            die();
+            return $this->saveOne($data);
         } else {
             if ($findRow['email'] !== $data['email']) {
                 echo "Miss matches the main user with admin email. Generating the main user... President is here!<br/>";
 
                 $this->cleanAll(self::TABLE);
-                $this->saveOne($data);
-
-                die();
+                return $this->saveOne($data);
             }
-
             echo "President already exists! It's all good!<br/>";
+
+            return ParticipantHydrator::hydrate($findRow);
         }
     }
 
